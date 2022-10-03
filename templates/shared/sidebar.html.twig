@@ -1,0 +1,21 @@
+<div class="sidebar d-flex flex-column mr50">
+	<a href="{{ path('form_question')}}" class="btn btn-primary">
+		<i class="fas fa-question mr5"></i>
+		<span>Need Us ? Just ask here !</span>
+	</a>
+
+	<ul class="sidebar-nav py20">
+		<a href="{{ path('home')}}" class="{{ app.request.pathinfo == path('home') ? 'active' : '' }}">
+			<i class="fas fa-home mr5"></i>
+			All the questions
+		</a>
+		<a>
+			<i class="fas fa-pen mr5"></i>
+			Private Group
+		</a>
+		<a>
+			<i class="fas fa-puzzle-piece mr5"></i>
+			All my Friends !!!
+		</a>
+	</ul>
+</div>

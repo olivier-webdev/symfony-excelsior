@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+    <div class="block mt20">
+    <h2 class="pb30">Login</h2>
+    <form action="{{ path('login') }}" method="post">
+        <div class="form-row">
+            <label for="email">Email</label>
+            <input type="text" id="email" autofocus name="_username" value={{ username }}>
+        </div>
+        <div class="form-row">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="_password">
+        </div>
+         <div class="form-row">
+            <label for="remember">
+            <input type="checkbox" id="remember" name="_remember_me">
+            Se souvenir de moi ?</label>
+        </div>
+        <input type="hidden" name="_csrf_token" value={{ csrf_token('authenticate') }}>
+        {% if error %}
+            <ul class="form-errors">
+                <li>{{ error.messageKey | trans(error.messageData, 'security') }}</li>
+            </ul>
+        {% endif %}
+        <div class="d-flex align-items-center">
+            <button class="btn btn-primary mr10">Login</button>
+            <small>
+                <a href={{ path('register') }}>Pas encore inscrit ?</a>
+            </small>
+            <small class="mlauto">
+                <a class="reset" href={{ path('reset') }}>Mot de passe oublié ?</a>
+            </small>
+        </div>
+    </form>
+    </div>
+{% endblock %}

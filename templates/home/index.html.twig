@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Excelsior{% endblock %}
+
+{% block body %}
+	<ul>
+        {% for question in questions %}
+            <div class="block d-flex flex-row mb10 mt10">
+                {% include "shared/rating.html.twig" with { note: question.note, from: 'question', id: question.id} %}
+                <div class="flex-fill d-flex flex-column">
+                    <a href= {{ path('one_question', {id: question.id}) }}  class="mb20 question-content">
+                        <h3 class="mb20 pb20">{{ question.title }}</h3>
+                        <p>{{ question.content }}</p>
+                    </a>
+                    <div class="d-flex flex-row justify-content-between">
+                        <a href={{ path('user', {id: question.author.id })}} class="d-flex flex-row align-items-center">
+                            <img class="avatar mr10" src={{ question.author.avatar }} alt="avatar">
+                            <small>Asked by <span class="click">{{ question.author.fullname }}</span></small>
+                        </a>
+                        {% if app.user %}                  
+                        <a href={{ path('follow', {id: question.id })}} class="d-flex flex-row align-items-center">
+                            {% if question.id in endpoint %}
+                                <i class="fas fa-heart mr10"></i>
+                            {% else %}
+                                <i class="far fa-heart mr10"></i>
+                            {% endif %}
+                        </a>
+                        {% else %}
+                            <div class="d-flex flex-row align-items-center">
+                                <i class="far fa-heart mr10"></i>
+                            </div>
+                        {% endif %}
+                        <div class="d-flex flex-row align-items-center">
+                            <i class="fas fa-comment mr10"></i>
+                            <p>{{ question.numberResponse }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>	
+        {% endfor %}
+	</ul>
+{% endblock %}

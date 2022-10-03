@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="block mt20">
+    <h2 class="pb30">Register</h2>
+    {{ form_start(form) }}
+    {{ form_rest(form) }}
+    <button class="btn btn-primary mt20">Register</button>
+    <small>
+        <a href={{ path('login') }}>Déjà inscrit ?</a>
+    </small>
+    {{ form_end(form) }}
+    </div>
+{% endblock %}

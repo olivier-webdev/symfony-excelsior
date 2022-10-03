@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+    <div class="block mb20 mt20">
+    <h2 class="pb30">Page de profil</h2>
+        {{ form_start(form) }}
+        {{ form_rest(form) }}
+        <button class="btn btn-primary mt10">Modifier</button>
+        {{ form_end(form) }}
+    </div>
+
+        <div class="block mb20">
+            <h3 class="mb10 bb">Mes questions</h3>
+            <ul>
+                {% for question in app.user.questions %}
+                    <li>{{ question.title }}</li>
+                    <div class="sep"></div>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="block mb20">
+            <h3 class="mb10 bb">Mes réponses</h3>
+            <ul>
+                {% for rep in app.user.reponses %}
+                    {# {% for reponse in questions %} #}
+                        <a href="{{ path('join', {id: rep.id}) }}">
+                            <li>{{ rep.content | slice(0, 70) }} ...</li>
+                            <div class="sep"></div>
+                        </a>
+                    {# {% endfor %} #}
+                {% endfor %}
+
+            </ul>
+        </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+.quest {
+    background-color: var(--primary);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 3px;
+}
+
+.quest-text, .one-response-text {
+    line-height: 30px;
+    white-space: pre-wrap;
+}
+
+small {
+    color: black;
+    opacity: 0.8;
+}

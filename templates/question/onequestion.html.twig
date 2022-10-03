@@ -1,0 +1,60 @@
+ {% extends "base.html.twig" %}
+
+{% block title %}  {{ question.title}} {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+	<link rel="stylesheet" href="{{ asset('css/one_question.css') }}">
+
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="block">
+    <div class="d-flex flex-row-nowrap">
+        {% include "shared/rating.html.twig" with { note: question.note, from: 'question', id: question.id} %}
+            <div class="d-flex flex-column">
+            <div class="d-flex flex-row-nowrap align-items-center pb30">
+                <h3 class="mr10">{{ question.title }}</h3>
+                {# <div class="quest">QUESTION</div> #}
+                <a class="mlauto" href={{ path('user', {id: question.author.id} )}}>
+                <img src={{ question.author.avatar }}
+                alt="avatar" class="avatar">
+                </a>
+            </div>
+                <p class="quest-text">{{ question.content }}</p>
+                <div class="sep"></div>
+
+                {% for answer in question.answers %}
+                    <div class="d-flex flex-row-nowrap mb20">
+                    {% include "shared/rating.html.twig" with { note: answer.note, from: 'reponse', id: answer.id} %}
+                    <div class="d-flex flex-column">
+                        <a href={{ path('user', {id: answer.author.id} )}} class="d-flex flex-row-nowrap align-items-center pb20">
+                            <img class="avatar mr10" src={{ answer.author.avatar }} alt="myavatar">
+                            <p class="click">{{ answer.author.fullname }}</p>
+                            <small class="mlauto">{{ answer.date | ago(locale = "fr") }}</small>
+                        </a>
+                        <p class="one-response-text">{{ answer.content }}</p>
+                        <div class="sep2"></div>
+                    </div>
+                    </div>
+                {% endfor %}
+                {% if form is defined %}
+                <div class="sep"></div>
+
+                <h3 class="pb20">Votre réponse : </h3>
+                <div class="comment-form">
+                    {{ form_start(form) }}
+                    {{ form_rest(form) }}
+                    <button class="btn btn-primary mt10">Save</button>
+                    {{ form_end(form) }}
+                </div>
+                {% else %}
+                    <a href={{ path('login')}} class="connect">Connectez vous pour pouvoir répondre</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

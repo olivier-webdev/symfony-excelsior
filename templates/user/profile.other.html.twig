@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ user.fullname }}{% endblock %}
+
+{% block body %}
+    <div class="block mb20">
+        <h2 class="pb30">Profil : {{ user.fullname }}</h2>
+        <div class="d-flex flex-row-nowrap">
+            <img src={{ user.avatar }} alt="picture" class="mr10 profile">
+            <ul>
+                <li class="mb10"><strong>Prénom :</strong> {{ user.firstname }}</li>
+                <li class="mb10"><strong>Nom :</strong> {{ user.lastname }}</li>
+                {# <li class="mb10"><strong>Email :</strong> {{ user.email }}</li> #}
+                {# on crée un bouton qui va envoyer à la route friend le parametre email #}
+                <a href={{ path('friend', {mail:  user.email } )}} class="btn btn-primary mr5 mt20">Be my friend ?</a>
+            </ul>
+        </div>
+    </div>
+
+            <div class="block mb20">
+            <h3>Ses questions</h3>
+            <ul>
+                {% for question in user.questions %}
+                    <li>{{ question.title }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="block mb20">
+            <h3>Ses réponses</h3>
+            <ul>
+                {% for reponse in user.reponses %}
+                    <li>{{ reponse.content | slice(0, 70) }} ...</li>
+                {% endfor %}
+            </ul>
+        </div>
+{% endblock %}

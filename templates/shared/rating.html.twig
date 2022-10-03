@@ -1,0 +1,24 @@
+<div class="d-flex flex-column mr20 align-items-center">
+{% if from == 'question' %}
+    <a href="{{ path('question_note', {id: id, total: 1}) }}">
+        <i class="fas fa-arrow-up {{ note > 0 ? 'rating-up' : ''}}"></i>
+    </a>
+    {% else %}
+    <a href="{{ path('reponse_note', {id: id, total: 1}) }}">
+        <i class="fas fa-arrow-up {{ note > 0 ? 'rating-up' : ''}}"></i>
+    </a>
+{% endif %}
+
+    <p class="little">{{ note }}</p>
+
+    {% if from == 'question' %}
+    <a href="{{ path('question_note', {id: id, total: -1}) }}">
+        <i class="fas fa-arrow-down {{ note < 0 ? 'rating-down' : ''}}"></i>
+    </a>
+    {% else %}
+    <a href="{{ path('reponse_note', {id: id, total: -1}) }}">
+        <i class="fas fa-arrow-down {{ note < 0 ? 'rating-down' : ''}}"></i>
+    </a>
+{% endif %}
+
+</div>
