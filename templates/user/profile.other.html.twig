@@ -6,7 +6,7 @@
     <div class="block mb20">
         <h2 class="pb30">Profil : {{ user.fullname }}</h2>
         <div class="d-flex flex-row-nowrap">
-            <img src={{ user.avatar }} alt="picture" class="mr10 profile">
+            <img src={{ asset(user.avatar) }} alt="picture" class="mr10 profile">
             <ul>
                 <li class="mb10"><strong>Prénom :</strong> {{ user.firstname }}</li>
                 <li class="mb10"><strong>Nom :</strong> {{ user.lastname }}</li>

@@ -14,7 +14,7 @@
                     </a>
                     <div class="d-flex flex-row justify-content-between">
                         <a href={{ path('user', {id: question.author.id })}} class="d-flex flex-row align-items-center">
-                            <img class="avatar mr10" src={{ question.author.avatar }} alt="avatar">
+                            <img class="avatar mr10" src={{ asset(question.author.avatar) }} alt="avatar">
                             <small>Asked by <span class="click">{{ question.author.fullname }}</span></small>
                         </a>
                         {% if app.user %}                  

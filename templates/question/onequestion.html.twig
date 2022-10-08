@@ -19,7 +19,7 @@
                 <h3 class="mr10">{{ question.title }}</h3>
                 {# <div class="quest">QUESTION</div> #}
                 <a class="mlauto" href={{ path('user', {id: question.author.id} )}}>
-                <img src={{ question.author.avatar }}
+                <img src={{ asset(question.author.avatar) }}
                 alt="avatar" class="avatar">
                 </a>
             </div>
@@ -31,7 +31,7 @@
                     {% include "shared/rating.html.twig" with { note: answer.note, from: 'reponse', id: answer.id} %}
                     <div class="d-flex flex-column">
                         <a href={{ path('user', {id: answer.author.id} )}} class="d-flex flex-row-nowrap align-items-center pb20">
-                            <img class="avatar mr10" src={{ answer.author.avatar }} alt="myavatar">
+                            <img class="avatar mr10" src={{ asset(answer.author.avatar) }} alt="myavatar">
                             <p class="click">{{ answer.author.fullname }}</p>
                             <small class="mlauto">{{ answer.date | ago(locale = "fr") }}</small>
                         </a>
